@@ -1,0 +1,59 @@
+doctype 5
+html(lang='en')
+    head
+        title Request browsing time
+        style(type='text/css')
+            #container {
+                color: #444;
+                display: inline-block;
+                left: 50%;
+                position: relative;
+            }
+            #container form {
+                left: -50%;
+                position: relative;
+            }
+            #container form h1 {
+                font-size: 1.8em;
+            }
+            #container form p {
+                font-size: 1.1em;
+            }
+            #container form p.info {
+                color: #777;
+            }
+            #container form input,
+            #container form p.info {
+                font-size: 1em;
+            }
+            #container form label {
+                line-height: 2em;
+                position: absolute;
+            }
+            #container form input {
+                color: #444;
+                margin-left: 8em;
+                padding: 0.2em;
+            }
+            #container form input[type="number"] {
+                width: 4em;
+            }
+    body
+        #container
+            form(action='', method='post')
+                h1 Request browsing time
+
+                unless left == 0 || duration == 0
+                    p.info You currently have #{left} seconds left out of #{duration}.
+
+                input(type='hidden', value='#{redirectUrl}', name='redirect')
+
+                p
+                    label(for='duration') Duration:
+                    input(id='duration', name='duration', type='number', min='0', max='3600', value='500', step='100', required='required', autofocus='autofocus')
+                    |  seconds
+                p
+                    label(for='description') Justification:
+                    input(id='description', name='description', type='text', placeholder='type a few words...', maxlength='128')
+                p
+                    input(type='submit', value='request time')

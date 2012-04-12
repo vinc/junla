@@ -1,0 +1,33 @@
+{
+  "name": "junla",
+  "version": "0.0.1",
+  "description": "Anti-procrastination proxy",
+  "private": true,
+  "author": {
+    "name": "Vincent Ollivier",
+    "email": "me@vinc.cc",
+    "url": "http://vinc.cc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vinc/junla.git"
+  },
+  "bin": {
+    "junla": "./bin/junla.js"
+  },
+  "dependencies": {
+    "commander": "0.5.2",
+    "jade": "0.22.1"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib"
+  },
+    "engines": {
+    "node": ">= 0.6.5"
+  },
+  "scripts": {
+    "preinstall": "./scripts/install.sh"
+  },
+  "preferGlobal": true
+}
