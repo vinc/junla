@@ -3,7 +3,7 @@ Junla
 
 Junla is an anti-procrastination proxy.
 
-<img src="http://i.imgur.com/5cufl.png" />
+<img src="http://i.imgur.com/0qhnn.png" />
 
 Synopsis
 --------
