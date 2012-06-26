@@ -1,5 +1,12 @@
 #!/bin/sh
 
+command -v coffee >/dev/null 2>&1
+if [ $? -ne 0 ]
+then
+    echo >&2 "CoffeeScript must be installed first."
+    exit 1
+fi
+
 coffee -bc bin
 coffee -c lib
 
