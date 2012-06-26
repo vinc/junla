@@ -105,8 +105,12 @@ proxy.on 'upgrade', (req, clientSocket, upgradeHead) ->
                         console.trace(e)
 
 proxy.on 'clientError', (e) ->
-    console.log('proxy client error: ', e)
-    console.trace(e)
+    switch e.code
+        when 'EPIPE', 'ECONNRESET'
+            # Skip
+        else
+            console.log('proxy client error: ', e)
+            console.trace(e)
 
 proxy.on 'listen', (e) ->
     console.log(e)
