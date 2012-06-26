@@ -22,7 +22,7 @@ exports.init = (options) ->
     logFileOptions =
         flags: 'a'
         encoding: 'utf8'
-        mode: 0666
+        mode: 0o666
     if (accessFile = options.access)?
         accessLog = fs.createWriteStream(accessFile, logFileOptions)
     if (requestsFile = options.requests)?

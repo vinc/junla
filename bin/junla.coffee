@@ -36,8 +36,8 @@ program
             parseInterface)
     .parse(process.argv)
 
-interface = "#{program.listen.host}:#{program.listen.port}"
-process.title = "junla --listen #{interface}"
+address = "#{program.listen.host}:#{program.listen.port}"
+process.title = "junla --listen #{address}"
 
 proxy.init
     log:
@@ -48,7 +48,7 @@ proxy.init
 proxy.on 'error', (e) ->
     switch e.code
         when 'EADDRINUSE'
-            msg = "Error: Could not bind to '#{interface}' (already in use)"
+            msg = "Error: Could not bind to '#{address}' (already in use)"
             console.error(msg)
 
 proxy.listen(program.listen.port, program.listen.host)
