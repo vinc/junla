@@ -16,7 +16,7 @@
     "junla": "./bin/junla.js"
   },
   "dependencies": {
-    "coffee-script": ">= 1.2.2",
+    "coffee-script": ">= 1.3.1",
     "commander": ">= 0.5.2",
     "jade": ">= 0.22.1"
   },
