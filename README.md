@@ -34,7 +34,7 @@ To download, build and install junla:
 
     $ git clone git://github.com/vinc/junla.git
     $ cd junla
-    $ npm install --global
+    $ sudo npm install --global
 
 
 Usage
