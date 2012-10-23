@@ -78,9 +78,7 @@ proxy = http.createServer (clientReq, clientRes) ->
                         console.log(e)
                         console.trace(e)
 
-#proxy.on 'connection', (clientSocket) ->
-
-proxy.on 'upgrade', (req, clientSocket, upgradeHead) ->
+proxyConnect = (req, clientSocket, head) ->
     switch req.method
         when 'CONNECT'
             # See RFC 2817 HTTP Upgrade to TLS
@@ -100,16 +98,26 @@ proxy.on 'upgrade', (req, clientSocket, upgradeHead) ->
                         # TODO: log response
                         clientSocket.write('HTTP/1.1 404 No Such Domain\n')
                         clientSocket.write('\n')
+                    when 'ETIMEDOUT'
+                        # TODO: log response
+                        clientSocket.write('HTTP/1.1 504 Gateway Timeout\n')
+                        clientSocket.write('\n')
                     else
                         console.log(e)
                         console.trace(e)
+        else
+            console.log "proxy.on connect, req.method = #{req.method}"
+
+proxy.on 'connect', proxyConnect
+
+proxy.on 'upgrade', proxyConnect
 
 proxy.on 'clientError', (e) ->
     switch e.code
-        when 'EPIPE', 'ECONNRESET'
+        when 'EPIPE', 'ECONNRESET', 'HPE_INVALID_EOF_STATE'
             # Skip
         else
-            console.log('proxy client error: ', e)
+            console.log('proxy client error: ', util.inspect(e, true, 2, true))
             console.trace(e)
 
 proxy.on 'listen', (e) ->
